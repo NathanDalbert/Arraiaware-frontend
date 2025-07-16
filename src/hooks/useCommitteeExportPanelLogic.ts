@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import type { SelectOption } from '../components/CustomSelect/CustomSelect'; 
-import type { Cycle } from '../types/evaluation'; 
+import { useCallback, useEffect, useState } from 'react';
+import type { SelectOption } from '../components/CustomSelect/CustomSelect';
+import type { Cycle } from '../types/evaluation';
 
 export const useExportPanelLogic = () => {
   const [cycles, setCycles] = useState<SelectOption[]>([]);
@@ -21,7 +21,7 @@ export const useExportPanelLogic = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/api/cycles', {
+        const response = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (!response.ok) throw new Error('Falha ao buscar ciclos de avaliação.');
@@ -53,7 +53,7 @@ export const useExportPanelLogic = () => {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await fetch(`http://localhost:3000/api/committee/export/cycle/${selectedCycle.id}/excel`, {
+      const response = await fetch(`https://arraiaware-backend.onrender.com/api/committee/export/cycle/${selectedCycle.id}/excel`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!response.ok) throw new Error(`Falha ao exportar o arquivo (Status: ${response.status})`);

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { ImportHistoryEntry } from '../types/RH';
 
 interface HistoryFromApi {
@@ -32,7 +32,7 @@ export const useHistoryPanelLogic = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/import-history', {
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/import-history', {
         headers: { 'Authorization': `Bearer ${token}` },
       });
 
@@ -69,7 +69,7 @@ export const useHistoryPanelLogic = () => {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`http://localhost:3000/api/import-history/${id}`, {
+      const response = await fetch(`https://arraiaware-backend.onrender.com/api/import-history/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -88,7 +88,7 @@ export const useHistoryPanelLogic = () => {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await fetch(`http://localhost:3000/api/import-history/${entry.id}/download`, {
+      const response = await fetch(`https://arraiaware-backend.onrender.com/api/import-history/${entry.id}/download`, {
         headers: { 'Authorization': `Bearer ${token}` },
       });
 
@@ -127,7 +127,7 @@ export const useHistoryPanelLogic = () => {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:3000/api/criteria/batch-update', {
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/criteria/batch-update', {
         method: 'PATCH', 
         headers: {
           'Authorization': `Bearer ${token}`,

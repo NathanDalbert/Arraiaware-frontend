@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import StatCard from '../../../components/StatCard/StatCard';
-import { Users, BarChart2, FileText, Loader2, AlertCircle } from 'lucide-react';
-import type { CommitteeSummary } from '../../../types/committee';
+import { AlertCircle, BarChart2, FileText, Loader2, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import SkeletonStatCard from '../../../components/SkeletonStatCard/SkeletonStatCard';
+import StatCard from '../../../components/StatCard/StatCard';
+import type { CommitteeSummary } from '../../../types/committee';
 
 export default function CommitteeStatsGrid(){
   const [summary, setSummary] = useState<CommitteeSummary | null>(null);
@@ -21,7 +21,7 @@ export default function CommitteeStatsGrid(){
       }
 
       try {
-        const response = await fetch('http://localhost:3000/api/committee/summary/last', {
+        const response = await fetch('https://arraiaware-backend.onrender.com/api/committee/summary/last', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 

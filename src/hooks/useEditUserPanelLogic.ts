@@ -1,6 +1,6 @@
-import { useState, useEffect,useCallback } from 'react';
-import type { User, ApiUserResponse } from '../types/RH'
+import { useCallback, useEffect, useState } from 'react';
 import type { SelectOption } from '../components/CustomSelect/CustomSelect';
+import type { ApiUserResponse, User } from '../types/RH';
 
 interface NotificationProps {
     status: 'success' | 'error';
@@ -98,7 +98,7 @@ export const useEditUserPanelLogic = () => {
                 roleIds: userData.roles,
             };
 
-            const response = await fetch(`http://localhost:3000/api/users/${userData.id}`, {
+            const response = await fetch(`https://arraiaware-backend.onrender.com/api/users/${userData.id}`, {
                 method: 'PATCH',
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -148,7 +148,7 @@ export const useEditUserPanelLogic = () => {
                     params.append('isActive', statusFilter.id);
                 }
 
-                const response = await fetch(`http://localhost:3000/api/users/paginated?${params.toString()}`, {
+                const response = await fetch(`https://arraiaware-backend.onrender.com/api/users/paginated?${params.toString()}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -192,7 +192,7 @@ export const useEditUserPanelLogic = () => {
             }
             
             try {
-                const response = await fetch('http://localhost:3000/api/roles/trilhas', {
+                const response = await fetch('https://arraiaware-backend.onrender.com/api/roles/trilhas', {
                     method: "GET",
                     headers: { 'Authorization': `Bearer ${token}` },
                 });

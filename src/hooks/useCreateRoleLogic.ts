@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import type { NotificationState } from '../types/global';
 
 export const useCreateRoleLogic = () => {
@@ -31,7 +31,7 @@ export const useCreateRoleLogic = () => {
         description,
       };
 
-      const response = await fetch('http://localhost:3000/api/roles', {
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/roles', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(requestBody),

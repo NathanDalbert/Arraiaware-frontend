@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { AlertTriangle, FileText, Loader2, Save } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import type { EvaluationConsolidatedView } from '../../../types/committee';
-import { Loader2, AlertTriangle, Save, FileText } from 'lucide-react';
 
 interface EqualizationPanelProps {
   data: EvaluationConsolidatedView | null;
@@ -64,7 +64,7 @@ export default function EqualizationPanel({
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/equalization/consolidated-view/${collaboratorId}/export?cycleId=${data.cycleId}`, {
+      const response = await fetch(`https://arraiaware-backend.onrender.com/api/equalization/consolidated-view/${collaboratorId}/export?cycleId=${data.cycleId}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // src/components/ManagerEvaluation/ManagerEvaluation.tsx
-import { useState, useEffect, useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../../context/AuthContext'
+import type { Answer, Manager, Question } from '../../../types/evaluation'
 import PeerEvaluationPanel from './ManagerEvaluyionPanel'
 import ManagerQuestionList from './ManagerQuestionList'
-import type { Manager, Answer, Question } from '../../../types/evaluation'
-import { AuthContext } from '../../../context/AuthContext'
 
 interface ManagerEvaluationProps {
   managerId: string
@@ -33,7 +33,7 @@ export default function ManagerEvaluation({
       setError(null)
       try {
         const res = await fetch(
-          `http://localhost:3000/api/teams/manager/${managerId}/projects`,
+          `https://arraiaware-backend.onrender.com/api/teams/manager/${managerId}/projects`,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export default function ManagerEvaluation({
     }
 
     try {
-      const res = await fetch('http://localhost:3000/api/evaluations/leader', {
+      const res = await fetch('https://arraiaware-backend.onrender.com/api/evaluations/leader', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import type { Criterion, Track, NewCriterionData, ExistingCriterionData, TracksFromApi } from '../types/RH';
+import { useEffect, useState } from 'react';
+import type { Criterion, ExistingCriterionData, NewCriterionData, Track, TracksFromApi } from '../types/RH';
 import type { NotificationState } from '../types/global';
 
 export function useCriteriaPanelLogic() {
@@ -28,7 +28,7 @@ export function useCriteriaPanelLogic() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/criteria', {
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/criteria', {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (!response.ok) throw new Error('Falha ao buscar a lista de critérios.');
@@ -48,7 +48,7 @@ export function useCriteriaPanelLogic() {
   }
   
   try {
-    const response = await fetch('http://localhost:3000/api/roles/trilhas', {
+    const response = await fetch('https://arraiaware-backend.onrender.com/api/roles/trilhas', {
       method: "GET",
       headers: { 'Authorization': `Bearer ${token}` },
     });
@@ -80,7 +80,7 @@ export function useCriteriaPanelLogic() {
     setIsSubmitting(false);
     return;
   }
-  const endpoint = `http://localhost:3000/api/criteria/roles/${trackId}/criteria`;
+  const endpoint = `https://arraiaware-backend.onrender.com/api/criteria/roles/${trackId}/criteria`;
 
   try {
     const response = await fetch(endpoint, {
@@ -122,7 +122,7 @@ export function useCriteriaPanelLogic() {
   
   try {
     if (isEditing) {
-      const endpoint = `http://localhost:3000/api/criteria/${data.id}`;
+      const endpoint = `https://arraiaware-backend.onrender.com/api/criteria/${data.id}`;
       const requestBody = {
         criterionName: data.name,
         description: data.description,
@@ -143,7 +143,7 @@ export function useCriteriaPanelLogic() {
       setNotification({ status: 'success', title: 'Sucesso!', message: 'Critério atualizado com sucesso.' });
 
     } else {
-      const createEndpoint = 'http://localhost:3000/api/criteria';
+      const createEndpoint = 'https://arraiaware-backend.onrender.com/api/criteria';
       const createRequestBody = {
         criterionName: data.name,
         description: data.description,
@@ -161,7 +161,7 @@ export function useCriteriaPanelLogic() {
       }
       
       const newCriterion: Criterion = await createResponse.json();
-      const associateEndpoint = `http://localhost:3000/api/criteria/roles/${trackId}/associate-criteria`;
+      const associateEndpoint = `https://arraiaware-backend.onrender.com/api/criteria/roles/${trackId}/associate-criteria`;
       const associateRequestBody = { criterionIds: [newCriterion.id] }; 
 
       const associateResponse = await fetch(associateEndpoint, {
@@ -203,7 +203,7 @@ const handleCreateTrackSubmit = async (data: { name: string; description: string
       description: data.description,
     };
 
-    const response = await fetch('http://localhost:3000/api/roles', { 
+    const response = await fetch('https://arraiaware-backend.onrender.com/api/roles', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ const handleCreateTrackSubmit = async (data: { name: string; description: string
       return;
     }
 
-    const endpoint = `http://localhost:3000/api/criteria/${criterionId}/disassociate-role`;
+    const endpoint = `https://arraiaware-backend.onrender.com/api/criteria/${criterionId}/disassociate-role`;
     const requestBody = { roleId: trackId };
 
     try {

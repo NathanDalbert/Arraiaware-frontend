@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
-import { FaRegFileAlt, FaChartLine, FaBullseye } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import { AuthContext } from '../../context/AuthContext';
-import StatCard from '../../components/StatCard/StatCard';
 import { CheckCircle2, Clock, Users } from 'lucide-react';
+import { useContext, useEffect, useState } from 'react';
+import { FaBullseye, FaChartLine, FaRegFileAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import EvolutionOverview from '../../components/EvolutionOverview/EvolutionOverview';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import StatCard from '../../components/StatCard/StatCard';
+import { AuthContext } from '../../context/AuthContext';
 
 /** ADICIONE ESTES IMPORTS **/
 import { formatDistance } from 'date-fns';
@@ -29,7 +29,7 @@ export default function Home() {
   useEffect(() => {
     async function loadCycles() {
       try {
-        const res = await fetch('http://localhost:3000/api/cycles', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

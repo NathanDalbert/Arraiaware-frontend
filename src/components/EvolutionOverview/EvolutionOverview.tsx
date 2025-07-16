@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../context/AuthContext'
-import Progress from '../Progress/progress'
-import Spinner from '../Spinner/Spinner'
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import Progress from '../Progress/progress';
+import Spinner from '../Spinner/Spinner';
 
 interface EvolutionEntry {
   cycleName: string;
@@ -24,7 +24,7 @@ export default function EvolutionOverview() {
     setLoading(true);
     setError(null);
 
-    fetch(`http://localhost:3000/api/dashboard/user-evolution/${userId}`, {
+    fetch(`https://arraiaware-backend.onrender.com/api/dashboard/user-evolution/${userId}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => {

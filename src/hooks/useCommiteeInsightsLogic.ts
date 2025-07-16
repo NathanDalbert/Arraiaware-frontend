@@ -1,7 +1,7 @@
 // hooks/useCommitteeInsightsLogic.ts
 
-import { useState, useEffect } from 'react';
-import type {CommitteInsightsInfo } from '../types/committee';
+import { useEffect, useState } from 'react';
+import type { CommitteInsightsInfo } from '../types/committee';
 
 interface Notification {
   status: 'error' | 'success';
@@ -27,7 +27,7 @@ export function useCommitteeInsightsLogic() {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/api/committee/insights', {
+        const response = await fetch('https://arraiaware-backend.onrender.com/api/committee/insights', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },

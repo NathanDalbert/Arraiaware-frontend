@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { BrutalFacts } from '../types/committee';
 import type { Cycle } from '../types/evaluation';
 
@@ -54,7 +54,7 @@ export function useBrutalFactsLogic() {
       const token = localStorage.getItem('token');
       if (!token) return;
       try {
-        const res = await fetch('http://localhost:3000/api/cycles', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(await res.text());
@@ -93,7 +93,7 @@ export function useBrutalFactsLogic() {
       const token = localStorage.getItem('token');
 
       try {
-        const url = new URL(`http://localhost:3000/api/brutal-facts/user/${userId}/cycle/${selectedCycleId}`);
+        const url = new URL(`https://arraiaware-backend.onrender.com/api/brutal-facts/user/${userId}/cycle/${selectedCycleId}`);
         
         const response = await fetch(url.toString(), {
           headers: { 'Authorization': `Bearer ${token}` }

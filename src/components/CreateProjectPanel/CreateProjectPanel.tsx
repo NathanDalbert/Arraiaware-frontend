@@ -1,5 +1,5 @@
 // src/components/CreateProject/CreateProjectPanel.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface User {
   id: string;
@@ -33,7 +33,7 @@ export default function CreateProjectPanel({
       setLoading(true);
       try {
         const token = localStorage.getItem('token') || '';
-        const res = await fetch('http://localhost:3000/api/users', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/users', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error('Falha ao buscar usuários');
@@ -53,7 +53,7 @@ export default function CreateProjectPanel({
     (async () => {
       try {
         const token = localStorage.getItem('token') || '';
-        const res = await fetch('http://localhost:3000/api/cycles', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error('Falha ao buscar ciclos');
@@ -83,7 +83,7 @@ export default function CreateProjectPanel({
     }
     try {
       const token = localStorage.getItem('token') || '';
-      const res = await fetch('http://localhost:3000/api/projects', {
+      const res = await fetch('https://arraiaware-backend.onrender.com/api/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

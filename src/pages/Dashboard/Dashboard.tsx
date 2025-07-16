@@ -1,22 +1,22 @@
 // src/pages/Dashboard.tsx
+import { TrendingUp } from 'lucide-react';
 import { useContext, useEffect, useState } from 'react';
-import { FaChartLine} from 'react-icons/fa';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import { AuthContext } from '../../context/AuthContext';
+import { FaChartLine } from 'react-icons/fa';
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  BarChart,    // ← Novo
-  Bar,         // ← Novo
+    Bar,
+    BarChart,
+    CartesianGrid,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis,
 } from 'recharts';
-import { TrendingUp} from 'lucide-react';
 import EvolutionOverview from '../../components/EvolutionOverview/EvolutionOverview';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import { AuthContext } from '../../context/AuthContext';
 
 /** DADOS DE EXEMPLO – SUBSTITUA PELA SUA API DEPOIS **/
 const sampleData = [
@@ -42,7 +42,7 @@ export default function Dashboard() {
   useEffect(() => {
     async function loadCycles() {
       try {
-        const res = await fetch('http://localhost:3000/api/cycles', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error('Erro ao carregar ciclos');

@@ -1,10 +1,10 @@
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import { useState } from 'react';
 import { FaChartLine, FaEye, FaEyeSlash, FaRegSmile, FaTrophy } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import HeaderLogin from '../../components/Header/Header_login';
 import { useAuth } from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
 import type { DecodedToken } from '../../types/context';
 
 export default function Login() {
@@ -21,7 +21,7 @@ export default function Login() {
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/login', {
+      const response = await axios.post('https://arraiaware-backend.onrender.com/api/auth/login', {
         email: email,
         password: senha
       });
@@ -49,7 +49,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post('http://localhost:3000/api/auth/reset-password', {
+      await axios.post('https://arraiaware-backend.onrender.com/api/auth/reset-password', {
         email: resetEmail,
       });
       alert('Se o e-mail estiver cadastrado, você receberá instruções para redefinir sua senha.');

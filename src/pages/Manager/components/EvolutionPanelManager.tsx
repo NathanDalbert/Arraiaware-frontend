@@ -1,11 +1,11 @@
 // src/components/EvaluationsPanel/EvaluationsPanelManager.tsx
-import { useState, useEffect, useRef } from 'react';
-import { Search, Loader2 } from 'lucide-react';
+import { Loader2, Search } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import CustomSelect, { type SelectOption } from '../../../components/CustomSelect/CustomSelect';
 import Pagination from '../../../components/Pagination/Pagination';
-import EvaluationsTableSkeleton from '../../Evaluation/components/EvaluationsTableSkeleton';
-import CustomSelect, {type SelectOption} from '../../../components/CustomSelect/CustomSelect';
 import { useEvaluationsPanelLogic } from '../../../hooks/useEvaluationsPanelLogic';
-import type { Evaluation, SelfEvaluationRecord, PeerEvaluationRecord, LeaderEvaluationRecord, ReferenceIndication, } from '../../../types/evaluation';
+import type { Evaluation, LeaderEvaluationRecord, PeerEvaluationRecord, ReferenceIndication, SelfEvaluationRecord, } from '../../../types/evaluation';
+import EvaluationsTableSkeleton from '../../Evaluation/components/EvaluationsTableSkeleton';
 import EvaluationsTableManager from './EvolutionTableManager';
 
 interface EvaluationsPanelManagerProps {
@@ -63,7 +63,7 @@ export default function EvaluationsPanelManager({
   // Aba ativa no detalhe
   const [activeSubTab, setActiveSubTab] = useState<'self' | 'peer' | 'leader' | 'reference'>('self');
 
-  const API_BASE = 'http://localhost:3000';
+  const API_BASE = 'https://arraiaware-backend.onrender.com';
 
   useEffect(() => {
    if (!selectedEvalItem) return;

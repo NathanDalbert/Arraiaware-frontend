@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import type { Evaluation, Cycle, EvaluationTableFromApi } from '../types/evaluation';
-import type { ManagerDashboardData } from '../types/manager';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { SelectOption } from '../components/CustomSelect/CustomSelect';
+import type { Cycle, Evaluation, EvaluationTableFromApi } from '../types/evaluation';
+import type { ManagerDashboardData } from '../types/manager';
 
 const statusOptions: SelectOption[] = [
     { id: 'all', name: 'Todos os Status' },
@@ -34,7 +34,7 @@ export const useEvaluationsPanelLogic = ({ managerId, cycleId,}: UseEvaluationsP
             if (!token) return;
 
             try {
-                const response = await fetch('http://localhost:3000/api/cycles', {
+                const response = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (!response.ok) throw new Error('Falha ao buscar ciclos de avaliação.');
@@ -70,8 +70,8 @@ export const useEvaluationsPanelLogic = ({ managerId, cycleId,}: UseEvaluationsP
                 params.append('limit', '10');
 
                 const endpoint = managerId
-                    ? `http://localhost:3000/api/dashboard/manager/${managerId}`
-                    : 'http://localhost:3000/api/rh/evaluations';
+                    ? `https://arraiaware-backend.onrender.com/api/dashboard/manager/${managerId}`
+                    : 'https://arraiaware-backend.onrender.com/api/rh/evaluations';
 
                 const response = await fetch(`${endpoint}?${params.toString()}`, {
                     headers: { 'Authorization': `Bearer ${token}` }

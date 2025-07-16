@@ -72,8 +72,8 @@ Este é o primeiro componente que você deve configurar, pois o Frontend depende
     ```bash
     pnpm start:dev
     ```
-    * A API estará disponível em: `http://localhost:3000/`
-    * A documentação interativa da API (Swagger/OpenAPI) estará em: `http://localhost:3000/api-docs`
+    * A API estará disponível em: `https://arraiaware-backend.onrender.com/`
+    * A documentação interativa da API (Swagger/OpenAPI) estará em: `https://arraiaware-backend.onrender.com/api-docs`
 
 * **Construir o Projeto para Produção (Build):**
     ```bash
@@ -114,7 +114,7 @@ Após configurar e iniciar o backend, você pode configurar o frontend.
         ```bash
         cp .env.example .env
         ```
-    * Abra o arquivo `.env` e ajuste a URL da API (geralmente `VITE_API_BASE_URL=http://localhost:3000`).
+    * Abra o arquivo `.env` e ajuste a URL da API (geralmente `VITE_API_BASE_URL=https://arraiaware-backend.onrender.com`).
 
 ### Comandos Básicos do Frontend
 
@@ -141,7 +141,7 @@ Após configurar e iniciar o backend, você pode configurar o frontend.
 1.  Certifique-se de que o **backend** está rodando (`pnpm start:dev`).
 2.  Certifique-se de que o **frontend** está rodando (`pnpm dev`).
 3.  Abra seu navegador em `http://localhost:5173/`. Você será redirecionado para a tela de login.
-4.  Para testar a funcionalidade de avaliação, você pode precisar criar um usuário através da API (usando a documentação Swagger do backend em `http://localhost:3000/api-docs`) ou aguardar a implementação de uma tela de cadastro no frontend.
+4.  Para testar a funcionalidade de avaliação, você pode precisar criar um usuário através da API (usando a documentação Swagger do backend em `https://arraiaware-backend.onrender.com/api-docs`) ou aguardar a implementação de uma tela de cadastro no frontend.
 
 ---
 

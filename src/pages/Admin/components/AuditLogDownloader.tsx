@@ -1,5 +1,5 @@
+import { Download, Loader2 } from 'lucide-react';
 import { useState } from 'react';
-import { Download, Loader2 } from 'lucide-react'; 
 
 export default function AuditLogDownloader() {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,7 +10,7 @@ export default function AuditLogDownloader() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3000/api/audit-logs');
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/audit-logs');
 
       if (!response.ok) {
         throw new Error(`Erro na rede: ${response.statusText}`);

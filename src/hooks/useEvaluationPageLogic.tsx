@@ -1,12 +1,12 @@
 // src/hooks/useEvaluationPageLogic.tsx
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect, type JSX } from 'react';
-import { useParams } from 'react-router-dom';
-import { FaStar, FaUsers, FaChartLine, FaCrown } from 'react-icons/fa';
 import { UserCheck } from 'lucide-react';
+import { useEffect, useState, type JSX } from 'react';
+import { FaChartLine, FaCrown, FaStar, FaUsers } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
 
-import type { Section, Colleague, Answer, Question, ReferenceIndication, Cycle, ApiTeamInfo, CriterionDto } from '../types/evaluation';
+import type { Answer, ApiTeamInfo, Colleague, CriterionDto, Cycle, Question, ReferenceIndication, Section } from '../types/evaluation';
 import type { ManagedTeamDto } from '../types/manager'; // Certifique-se que este tipo existe em 'types/manager.ts'
 
 const peerQuestions: Question[] = [
@@ -104,7 +104,7 @@ export const useAvaliacaoLogic = () => {
     (async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`http://localhost:3000/api/users/${userId}`, {
+        const res = await fetch(`https://arraiaware-backend.onrender.com/api/users/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error('Não foi possível buscar usuário');
@@ -128,7 +128,7 @@ export const useAvaliacaoLogic = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       try {
-        const res = await fetch('http://localhost:3000/api/cycles', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(await res.text());
@@ -153,7 +153,7 @@ export const useAvaliacaoLogic = () => {
     const fetchTeamData = async () => {
         try {
             if (userType === 'GESTOR') {
-                const res = await fetch(`http://localhost:3000/api/teams/manager/${userId}/projects`, {
+                const res = await fetch(`https://arraiaware-backend.onrender.com/api/teams/manager/${userId}/projects`, {
                     headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {})},
                 });
                 if (!res.ok) throw new Error(await res.text() || 'Falha ao buscar times gerenciados.');
@@ -180,7 +180,7 @@ export const useAvaliacaoLogic = () => {
                 }
                 setLeaderColleagues([]);
             } else {
-                const res = await fetch(`http://localhost:3000/api/teams/user/${userId}/projects`, {
+                const res = await fetch(`https://arraiaware-backend.onrender.com/api/teams/user/${userId}/projects`, {
                     headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {})},
                 });
                 if (!res.ok) throw new Error(await res.text() || 'Falha ao buscar dados do time.');
@@ -319,7 +319,7 @@ useEffect(() => {
       try {
         const token = localStorage.getItem('token');
         const res = await fetch(
-          `http://localhost:3000/api/roles/trilhas/${trilhaId}`,
+          `https://arraiaware-backend.onrender.com/api/roles/trilhas/${trilhaId}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         if (!res.ok) throw new Error('Não conseguiu buscar critérios da trilha');
@@ -384,7 +384,7 @@ useEffect(() => {
     async function fetchAllUsers() {
       const token = localStorage.getItem('token');
       try {
-        const res = await fetch('http://localhost:3000/api/users', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/users', {
           headers: {
             'Content-Type': 'application/json',
             ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -447,7 +447,7 @@ async function handleSubmitPeer() {
     pointsToExplore,
   }
 
-      const res = await fetch('http://localhost:3000/api/evaluations/peer', {
+      const res = await fetch('https://arraiaware-backend.onrender.com/api/evaluations/peer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -489,7 +489,7 @@ async function handleSubmitPeer() {
           cycleId,
           justification: ref.justification,
         };
-        const res = await fetch('http://localhost:3000/api/evaluations/reference', {
+        const res = await fetch('https://arraiaware-backend.onrender.com/api/evaluations/reference', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -534,7 +534,7 @@ async function handleSubmitPeer() {
     };
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3000/api/evaluations/self', {
+      const res = await fetch('https://arraiaware-backend.onrender.com/api/evaluations/self', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -588,7 +588,7 @@ async function handleSubmitPeer() {
 
         const token = localStorage.getItem('token');
         const res = await fetch(
-            'http://localhost:3000/api/evaluations/leader-feedback',
+            'https://arraiaware-backend.onrender.com/api/evaluations/leader-feedback',
             {
             method:  'POST',
             headers: {

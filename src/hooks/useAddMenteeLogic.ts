@@ -1,6 +1,6 @@
-import { useState, useEffect,useCallback } from 'react';
-import type { ApiResponse,MenteeUser } from '../types/committee';
+import { useCallback, useEffect, useState } from 'react';
 import type { SelectOption } from '../components/CustomSelect/CustomSelect';
+import type { ApiResponse, MenteeUser } from '../types/committee';
 
 interface Notification {
   status: 'error' | 'success';
@@ -94,7 +94,7 @@ export function useAddMenteeLogic() {
 
         params.append('isActive', 'true');
         
-        const response = await fetch(`http://localhost:3000/api/users/paginated?${params.toString()}`, {
+        const response = await fetch(`https://arraiaware-backend.onrender.com/api/users/paginated?${params.toString()}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -136,7 +136,7 @@ export function useAddMenteeLogic() {
     setNotification(null);
 
     try {
-        const response = await fetch(`http://localhost:3000/api/committee/users/${menteeId}/mentor`, {
+        const response = await fetch(`https://arraiaware-backend.onrender.com/api/committee/users/${menteeId}/mentor`, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,

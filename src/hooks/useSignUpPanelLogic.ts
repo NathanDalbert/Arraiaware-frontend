@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
-import type { NotificationState } from '../types/global';
+import { useCallback, useEffect, useState } from 'react';
 import type { SelectOption } from '../components/CustomSelect/CustomSelect';
-import type { RoleFromApi} from '../types/RH';
+import type { NotificationState } from '../types/global';
+import type { RoleFromApi } from '../types/RH';
 
 const rolesOptions: SelectOption[] = [
   { id: 'COLABORADOR', name: 'Colaborador' },
@@ -33,8 +33,8 @@ export const useSignUpPanelLogic = () => {
       
       try {
         const [cargosResponse, tracksResponse] = await Promise.all([
-          fetch('http://localhost:3000/api/roles', { headers: { 'Authorization': `Bearer ${token}` } }),
-          fetch('http://localhost:3000/api/roles/trilhas', { headers: { 'Authorization': `Bearer ${token}` } })
+          fetch('https://arraiaware-backend.onrender.com/api/roles', { headers: { 'Authorization': `Bearer ${token}` } }),
+          fetch('https://arraiaware-backend.onrender.com/api/roles/trilhas', { headers: { 'Authorization': `Bearer ${token}` } })
         ]);
 
         if (!cargosResponse.ok) throw new Error('Falha ao buscar cargos');
@@ -78,7 +78,7 @@ export const useSignUpPanelLogic = () => {
         roleIds: [selectedTrack.id, selectedCargo.id],
       };
       
-      const response = await fetch('http://localhost:3000/api/users', {
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(requestBody),

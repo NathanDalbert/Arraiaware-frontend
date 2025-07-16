@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback ,useMemo} from 'react';
-import type { CommitteeCollaboratorsEvaluations, CommitteePanelTable,SummaryApiResponse,EvaluationConsolidatedView } from '../types/committee';
-import type { Cycle } from '../types/evaluation';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { SelectOption } from '../components/CustomSelect/CustomSelect';
+import type { CommitteeCollaboratorsEvaluations, CommitteePanelTable, EvaluationConsolidatedView, SummaryApiResponse } from '../types/committee';
+import type { Cycle } from '../types/evaluation';
 
 interface NotificationProps {
   status: 'success' | 'error';
@@ -72,7 +72,7 @@ export const useCommitteeEvaluationsLogic = () => {
                 params.append('page', currentPage.toString());
                 params.append('limit', '10'); 
 
-                const response = await fetch(`http://localhost:3000/api/committee/panel?${params.toString()}`, {
+                const response = await fetch(`https://arraiaware-backend.onrender.com/api/committee/panel?${params.toString()}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
 
@@ -117,7 +117,7 @@ export const useCommitteeEvaluationsLogic = () => {
                 return;
             } 
             try {
-                const response = await fetch('http://localhost:3000/api/cycles', {
+                const response = await fetch('https://arraiaware-backend.onrender.com/api/cycles', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 if (!response.ok) throw new Error('Falha ao buscar ciclos de avaliação.');
@@ -170,7 +170,7 @@ export const useCommitteeEvaluationsLogic = () => {
         };
 
         setIsUpdating(true);
-        const response = await fetch(`http://localhost:3000/api/committee/panel/${selectedEvaluation.id}`, {
+        const response = await fetch(`https://arraiaware-backend.onrender.com/api/committee/panel/${selectedEvaluation.id}`, {
             method: 'PATCH',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -216,7 +216,7 @@ export const useCommitteeEvaluationsLogic = () => {
                 finalScore: finalScoreValue
             };
 
-            const response = await fetch(`http://localhost:3000/api/committee/panel/${editingEvaluationId}`, {
+            const response = await fetch(`https://arraiaware-backend.onrender.com/api/committee/panel/${editingEvaluationId}`, {
                 method: 'PATCH',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -269,7 +269,7 @@ export const useCommitteeEvaluationsLogic = () => {
                 observation: observationContent,
             };
 
-            const response = await fetch(`http://localhost:3000/api/committee/panel/${selectedEvaluation.id}`, {
+            const response = await fetch(`https://arraiaware-backend.onrender.com/api/committee/panel/${selectedEvaluation.id}`, {
                 method: 'PATCH',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
@@ -333,7 +333,7 @@ export const useCommitteeEvaluationsLogic = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/api/equalization/consolidated-view/${userId}/summary?cycleId=${cycleId}`, {
+            const response = await fetch(`https://arraiaware-backend.onrender.com/api/equalization/consolidated-view/${userId}/summary?cycleId=${cycleId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -378,7 +378,7 @@ export const useCommitteeEvaluationsLogic = () => {
     }
 
     try {
-        const response = await fetch(`http://localhost:3000/api/equalization/consolidated-view/${userId}?cycleId=${cycleId}`, {
+        const response = await fetch(`https://arraiaware-backend.onrender.com/api/equalization/consolidated-view/${userId}?cycleId=${cycleId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 

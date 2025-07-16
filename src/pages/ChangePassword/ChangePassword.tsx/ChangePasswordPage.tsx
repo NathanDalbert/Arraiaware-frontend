@@ -1,15 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import StatCard from '../../components/StatCard/StatCard';
-import { KeyRound, Lock } from 'lucide-react';
 import { jwtDecode } from 'jwt-decode';
+import { KeyRound, Lock } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import StatCard from '../../components/StatCard/StatCard';
 import type { DecodedToken } from '../../types/context';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://arraiaware-backend.onrender.com/api';
 
 export default function ChangePasswordPage() {
   const [currentPassword, setCurrentPassword] = useState('');

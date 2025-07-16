@@ -1,20 +1,20 @@
-import Header from '../../components/Header/Header';
-import StatCard from '../../components/StatCard/StatCard';
-import { Users,PlusCircle, CheckCircle2, Clock, AlertTriangle,ClipboardList, SlidersHorizontal, Import,Briefcase,Pencil} from 'lucide-react'; 
-import OverallProgress from './components/OverallProgress';
-import { useState,useRef,useEffect,useCallback } from 'react';
-import type { Tab } from '../../types/tabs';
-import Tabs from '../../components/Tabs/Tabs';
-import EvaluationsPanel from './components/EvaluationsPanel';
-import CriteriaPanel from './components/CriteriaPanel';
-import HistoryPanel from './components/HistoryPanel';
+import { AlertTriangle, Briefcase, CheckCircle2, ClipboardList, Clock, Import, Pencil, PlusCircle, SlidersHorizontal, Users } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Footer from '../../components/Footer/Footer';
-import SignUpPanel from './components/SignUpPanel';
-import type { RHTabId,DashboardData } from '../../types/RH';
-import CreateRolePanel from './components/CreateRolePanel';
+import Header from '../../components/Header/Header';
 import SkeletonStatCard from '../../components/SkeletonStatCard/SkeletonStatCard';
-import EditUserPanel from './components/EditUserPanel';
+import StatCard from '../../components/StatCard/StatCard';
+import Tabs from '../../components/Tabs/Tabs';
+import type { DashboardData, RHTabId } from '../../types/RH';
+import type { Tab } from '../../types/tabs';
 import CreateCyclePanel from './components/CreateCyclePanel';
+import CreateRolePanel from './components/CreateRolePanel';
+import CriteriaPanel from './components/CriteriaPanel';
+import EditUserPanel from './components/EditUserPanel';
+import EvaluationsPanel from './components/EvaluationsPanel';
+import HistoryPanel from './components/HistoryPanel';
+import OverallProgress from './components/OverallProgress';
+import SignUpPanel from './components/SignUpPanel';
 
 const rhTabOptions: Tab[] = [
   { id: 'status', label: 'Status das Avaliações', icon: <ClipboardList size={18} /> },
@@ -48,7 +48,7 @@ export default function RH() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/dashboard/overall-stats', {
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/dashboard/overall-stats', {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (!response.ok) throw new Error('Falha ao buscar dados do dashboard.');

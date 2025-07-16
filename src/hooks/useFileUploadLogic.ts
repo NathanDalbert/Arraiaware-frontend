@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import type { UploadResult } from '../types/RH';
 
@@ -44,7 +44,7 @@ export const useFileUploadLogic = ({ onUploadSuccess }: UseFileUploadLogicProps)
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/rh/import/history/batch', {
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/rh/import/history/batch', {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body: formData,

@@ -1,17 +1,17 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
-import Header from '../../components/Header/Header';
-import StatCard from '../../components/StatCard/StatCard'; 
-import { Users, CheckCircle2, Clock, AlertTriangle, ClipboardList, PlusCircle} from 'lucide-react'; 
-import OverallProgressManager from './components/OverallProgressManager';
-import Tabs from '../../components/Tabs/Tabs';
-import Footer from '../../components/Footer/Footer';
-import type { Tab } from '../../types/tabs';
-import type { managerTabId, ManagerDashboardData } from '../../types/manager';
-import SkeletonStatCard from '../../components/SkeletonStatCard/SkeletonStatCard';
-import ManagerEvaluation from './components/ManagerEvaluation';
-import type { Question } from '../../types/evaluation';
-import EvaluationsPanelManager from './components/EvolutionPanelManager';
+import { AlertTriangle, CheckCircle2, ClipboardList, Clock, PlusCircle, Users } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import CreateProjectPanel from '../../components/CreateProjectPanel/CreateProjectPanel';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import SkeletonStatCard from '../../components/SkeletonStatCard/SkeletonStatCard';
+import StatCard from '../../components/StatCard/StatCard';
+import Tabs from '../../components/Tabs/Tabs';
+import type { Question } from '../../types/evaluation';
+import type { ManagerDashboardData, managerTabId } from '../../types/manager';
+import type { Tab } from '../../types/tabs';
+import EvaluationsPanelManager from './components/EvolutionPanelManager';
+import ManagerEvaluation from './components/ManagerEvaluation';
+import OverallProgressManager from './components/OverallProgressManager';
 
 
 const managerTabOptions: Tab[] = [
@@ -88,7 +88,7 @@ export default function Manager() {
       }
       
       try {
-        const response = await fetch(`http://localhost:3000/api/dashboard/manager/${userObject.sub}`, {
+        const response = await fetch(`https://arraiaware-backend.onrender.com/api/dashboard/manager/${userObject.sub}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
