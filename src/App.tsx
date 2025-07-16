@@ -1,13 +1,13 @@
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import RH from './pages//RH/RH';
+import Admin from './pages/Admin/Admin';
+import Comite from './pages/Committee/Committee';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Avaliacao from './pages/Evaluation/Evaluation';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import Avaliacao from './pages/Evaluation/Evaluation'
-import RH from './pages//RH/RH';
-import Comite from './pages/Committee/Committee';
-import Gestor from './pages/Manager/Manager'
-import Dashboard from './pages/Dashboard/Dashboard'
-import Admin from './pages/Admin/Admin';
+import Gestor from './pages/Manager/Manager';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
         <Route path="/Comite" element={<Comite />} />
         <Route path="/Gestor" element={<Gestor />} />
         <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/change-password" element={<ChangePasswordPage />} />
+      
         
         {/* Painel Admin */}
 
