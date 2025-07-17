@@ -9,22 +9,37 @@ export default function AuditLogDownloader() {
     setIsLoading(true);
     setError(null);
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+        setError("Autenticação necessária.");
+        setIsLoading(false);
+        return;
+    }
+
     try {
-      const response = await fetch('https://arraiaware-backend.onrender.com/api/audit-logs');
+      const response = await fetch('https://arraiaware-backend.onrender.com/api/audit-logs/export', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
 
       if (!response.ok) {
         throw new Error(`Erro na rede: ${response.statusText}`);
       }
 
-      const data = await response.json();
-
-      const jsonString = JSON.stringify(data, null, 2); 
-      const blob = new Blob([jsonString], { type: 'application/json' });
+      const csvString = await response.text();
+      
+      if (!csvString) {
+        setError("Não há dados de auditoria para exportar.");
+        setIsLoading(false);
+        return;
+      }
+      
+      const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
 
       const link = document.createElement('a');
       link.href = url;
-      link.download = `audit-logs-${new Date().toISOString()}.json`; 
+
+      link.download = `audit-logs-${new Date().toISOString().split('T')[0]}.csv`;
       document.body.appendChild(link);
       link.click();
 
@@ -33,7 +48,11 @@ export default function AuditLogDownloader() {
 
     } catch (err: unknown) {
       console.error("Falha ao baixar os logs:", err);
-      setError("Não foi possível baixar os logs. Tente novamente mais tarde.");
+      if (err instanceof SyntaxError) {
+        setError("Ocorreu um erro ao processar os dados. Tente novamente.");
+      } else {
+        setError("Não foi possível baixar os logs. Tente novamente mais tarde.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -43,8 +62,8 @@ export default function AuditLogDownloader() {
     <div className="mt-8 p-6 border border-gray-200 rounded-lg bg-white shadow-sm">
       <h2 className="text-xl font-semibold text-gray-800">Logs de Auditoria</h2>
       <p className="text-gray-600 mt-2">
-        Baixe o arquivo completo com todos os registros de auditoria do sistema. 
-        O arquivo será gerado no formato JSON.
+        Baixe o arquivo completo com todos os registros de auditoria do sistema.
+        O arquivo será gerado no formato <strong>CSV</strong>.
       </p>
 
       <div className="mt-6">
