@@ -17,7 +17,7 @@ export default function NotificationMessages({ status, title, message, onClose }
 
   const isSuccess = status === 'success';
   
-  const baseClasses = 'fixed top-5 right-5 w-full max-w-sm p-4 rounded-lg shadow-lg flex items-start gap-3 z-50';
+  const baseClasses = 'fixed top-5 right-5 w-full max-w-sm p-4 rounded-lg shadow-lg flex items-start gap-3 z-100';
   const successClasses = 'bg-green-50 border border-green-200';
   const errorClasses = 'bg-red-50 border border-red-200';
 

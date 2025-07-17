@@ -9,6 +9,8 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Gestor from './pages/Manager/Manager';
 
+import ResetPassword from './pages/ResetPassword/ResetPasswordPage';
+
 function App() {
   return (
     <BrowserRouter>
@@ -22,7 +24,7 @@ function App() {
         <Route path="/Comite" element={<Comite />} />
         <Route path="/Gestor" element={<Gestor />} />
         <Route path="/Dashboard" element={<Dashboard />} />
-      
+        <Route path="/change-password" element={<ResetPassword />} />
         
         {/* Painel Admin */}
 
