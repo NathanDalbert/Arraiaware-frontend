@@ -70,7 +70,7 @@ export default function ChangePasswordForm({ onUpdate, onClose, onBack }: Change
     setIsSubmitting(true);
     try {
       await axios.patch(
-        'https://arraiaware-backend.onrender.com//api/users/me/change-password',
+        'https://arraiaware-backend.onrender.com/api/users/me/change-password',
         { currentPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

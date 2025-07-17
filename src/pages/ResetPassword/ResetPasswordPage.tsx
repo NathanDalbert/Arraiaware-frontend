@@ -44,7 +44,7 @@ export default function ResetPassword() {
     setIsSubmitting(true);
 
     try {
-      await axios.post('https://arraiaware-backend.onrender.com//api/users/reset-password', {
+      await axios.post('https://arraiaware-backend.onrender.com/api/users/reset-password', {
         email: email,
       });
       
