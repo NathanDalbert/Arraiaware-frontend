@@ -1,6 +1,6 @@
-import { type FormEvent, useState } from 'react';
 import axios from 'axios';
-import { Eye, EyeOff, KeyRound, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff, KeyRound } from 'lucide-react';
+import { type FormEvent, useState } from 'react';
 
 type NotificationState = {
   status: 'success' | 'error';
@@ -70,7 +70,7 @@ export default function ChangePasswordForm({ onUpdate, onClose, onBack }: Change
     setIsSubmitting(true);
     try {
       await axios.patch(
-        'http://localhost:3000/api/users/me/change-password',
+        'https://arraiaware-backend.onrender.com//api/users/me/change-password',
         { currentPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

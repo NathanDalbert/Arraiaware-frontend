@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderLogin from '../../components/Header/Header_login';
 import NotificationMessages from '../../components/NotificationMessages/NotificationMessages';
@@ -44,7 +44,7 @@ export default function ResetPassword() {
     setIsSubmitting(true);
 
     try {
-      await axios.post('http://localhost:3000/api/users/reset-password', {
+      await axios.post('https://arraiaware-backend.onrender.com//api/users/reset-password', {
         email: email,
       });
       
